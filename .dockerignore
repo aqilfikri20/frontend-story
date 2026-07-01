@@ -1,0 +1,12 @@
+node_modules
+dist
+.gitvenv
+.venv
+node_modules
+__pycache__
+*.pyc
+.git
+dist
+build
+.svelte-kit
+.env
