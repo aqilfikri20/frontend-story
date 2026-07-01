@@ -34,7 +34,7 @@ messages = [...messages];
 
 try {
     const resp = await fetch(
-        `${import.meta.env.API_URL}/chat`,
+        `${import.meta.env.VITE_API_URL}/chat`,
         {
             method: "POST",
             headers: {
@@ -157,7 +157,7 @@ async function sendMessage() {
   const context = messages.slice(-8); 
 
   try {
-    const resp = await fetch(`${import.meta.env.API_URL}/chat`, {
+    const resp = await fetch(`${import.meta.env.VITE_API_URL}/chat`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ messages: context })
