@@ -1,9 +1,9 @@
 :root {
     --app-font: "Special Elite";
     --app-font-size: 16px;
-    --user-bubble: #c95400;
+    --user-bubble: rgb(0, 201, 110);
     --assistant-bubble: #2563eb; 
-    --background: var(--background);
+    --background: rgb(25, 25, 25);
     --font-color: white;
 }
 * {

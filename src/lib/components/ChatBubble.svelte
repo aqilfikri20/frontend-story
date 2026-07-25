@@ -11,7 +11,7 @@ function regenerate() {
     dispatch("regenerate");
 }
 
-  async function copyText() {
+async function copyText() {
     await navigator.clipboard.writeText(
     capitalizeSentences(text)
 );
@@ -64,29 +64,41 @@ const fontMap: Record<string, string> = {
 </script>
 
 <style>
-  .bubble {
-      position: relative;
-      padding: 1.2rem 1.2rem;
-      border-radius: 12px;
-      max-width: 80%;
-      word-wrap: break-word;
-      line-height: 1.5;
-      font-size: 0.95rem;
-  }
+.bubble {
+    position: relative;
+    width: fit-content;
+    max-width: min(85%, 700px);
+
+    padding: 1rem 1rem;
+    border-radius: 12px;
+
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+
+    line-height: 1.6;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+
+    box-sizing: border-box;
+}
 
   .user {
     background: var(--user-bubble);
     color: var(--font-color);
     align-self: flex-end;
     border-bottom-right-radius: 0;
+    margin-bottom: 10px;
   }
 
 .story {
-  font-family: var(--app-font), sans-serif;
-  font-size: var(--app-font-size);
-  line-height: 1.7;
-  text-align: justify;
-  max-width: 700px;
+    width: 100%;
+    max-width: 700px;
+
+    font-family: var(--app-font), sans-serif;
+    font-size: var(--app-font-size);
+    line-height: 1.7;
+
+    text-align: justify;
+    word-break: break-word;
 }
 
 .assistant p {
@@ -102,9 +114,13 @@ const fontMap: Record<string, string> = {
 
 .message-actions {
     display: flex;
-    gap: 2px;
-    margin-left: 8px;
-    opacity: 0.8;
+    flex-wrap: wrap;
+
+    gap: 4px;
+    margin-left: 4px;
+    margin-top: 6px;
+
+    opacity: .9;
 }
 .action-btn {
     width: 28px;
@@ -129,11 +145,13 @@ const fontMap: Record<string, string> = {
 }
 
 .assistant-wrapper {
-  margin-top: 30px;
-  display: flex;
-  flex-direction: column;
-  align-self: flex-start; /* rata kiri */
-  width: 100%;
+    margin-top: 20px;
+
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    max-width: 100%;
 }
 
 .message-actions {
@@ -178,6 +196,53 @@ const fontMap: Record<string, string> = {
 
 .pdf-story p {
     margin-bottom: 1em;
+
+    @media (max-width: 768px) {
+
+    .bubble {
+        max-width: 95%;
+        padding: 0.9rem;
+        font-size: 0.92rem;
+    }
+
+    .story {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
+    .assistant-wrapper {
+        margin-top: 16px;
+    }
+
+    .action-btn {
+        width: 34px;
+        height: 34px;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .bubble {
+        max-width: 100%;
+        border-radius: 10px;
+        padding: 0.8rem;
+    }
+
+    .story {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .message-actions {
+        gap: 2px;
+    }
+
+    .action-btn {
+        width: 36px;
+        height: 36px;
+    }
+}
 }
 </style>
 

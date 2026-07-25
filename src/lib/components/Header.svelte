@@ -301,7 +301,32 @@ document.documentElement.style.setProperty(
 
     font-weight: 750;
 }
+@media (max-width: 768px){
 
+.header{
+    flex-direction:column;
+    align-items:center;
+    padding:10px 0;
+    height:auto;
+}
+
+.navbar-left{
+    width:100%;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+    .dropdown button,
+    .color-link{
+        width:90px;
+        font-size:14px;
+    }
+
+    .logo{
+        height:40px;
+    }
+
+}
 @keyframes spin {
     from {
         transform:
@@ -312,6 +337,8 @@ document.documentElement.style.setProperty(
         transform:
             rotate(360deg);
     }
+
+    
 }
 </style>
 
