@@ -149,54 +149,14 @@ onMount(() => {
 });
 </script>
 <div class="container">
-    <h2>Warna Bubble User</h2>
-
-    <div class="preview" style="background:{userColor}">
-        Contoh Pesan User
-    </div>
-
-    <label for="user-red">
-        Merah ({userR})
-    </label>
-    <input
-        id="user-red"
-        type="range"
-        min="0"
-        max="255"
-        bind:value={userR}
-    />
-
-    <label for="user-green">
-        Hijau ({userG})
-    </label>
-    <input
-        id="user-green"
-        type="range"
-        min="0"
-        max="255"
-        bind:value={userG}
-    />
-
-    <label for="user-blue">
-        Biru ({userB})
-    </label>
-    <input
-        id="user-blue"
-        type="range"
-        min="0"
-        max="255"
-        bind:value={userB}
-    />
-
-    <p>{userColor}</p>
-
-    <h2>Warna Bubble Sistem</h2>
+ 
+    <h2>Warna Kotak Generate</h2>
 
     <div
         class="preview"
         style="background:{assistantColor}"
     >
-        Contoh Pesan Sistem
+        Contoh Warna Kotak Generate
     </div>
 
     <label for="assistant-red">

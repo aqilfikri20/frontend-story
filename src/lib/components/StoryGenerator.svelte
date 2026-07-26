@@ -3,7 +3,8 @@
     nama: "",
     genre: "",
     peran: "",
-    elemen: ["", "", ""]
+    sifat: "",
+    elemen: ["", ""]
 };
 
 let loading = false;
@@ -19,6 +20,11 @@ function validateForm(): boolean {
 
     if (!form.peran) {
         alert("Silakan pilih peran.");
+        return false;
+    }
+
+    if (!form.sifat) {
+        alert("Silakan masukkan sifat tokoh utama.");
         return false;
     }
 
@@ -86,7 +92,34 @@ async function generateStory() {
 
 }
 
+function copyStory() {
+    navigator.clipboard.writeText(story)
+        .then(() => {
+            alert("Cerita berhasil disalin!");
+        })
+        .catch(() => {
+            alert("Gagal menyalin cerita.");
+        });
+}
 
+function downloadStory() {
+    const blob = new Blob([story], {
+        type: "text/plain;charset=utf-8"
+    });
+
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "cerita.txt";
+    a.click();
+
+    URL.revokeObjectURL(url);
+}
+
+function regenerateStory() {
+    generateStory();
+}
 </script>
 
 <style>
@@ -240,6 +273,36 @@ select:focus{
     margin-bottom:16px;
 }
 
+.story-actions{
+    margin-top:25px;
+
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+
+    justify-content:flex-end;
+}
+
+.story-actions button{
+
+    padding:10px 18px;
+
+    border:none;
+    border-radius:10px;
+
+    cursor:pointer;
+
+    background:#3b82f6;
+    color:white;
+
+    font-weight:600;
+
+    transition:.2s;
+}
+
+.story-actions button:hover{
+    background:#2563eb;
+}
 </style>
 
 <div class="generator">
@@ -276,6 +339,11 @@ select:focus{
             <input bind:value={form.peran} placeholder="Peran/Pekerjaan Tokoh Utama">
         </div>
 
+        <div class="field">
+            <label>Sifat Tokoh Utama</label>
+            <input bind:value={form.sifat} placeholder="Sifat Tokoh Utama">
+        </div>
+
         <div class="elements">
         <label>Elemen Penting</label>
 
@@ -287,11 +355,6 @@ select:focus{
 <input
     bind:value={form.elemen[1]}
     placeholder="Elemen penting kedua"
-/>
-
-<input
-    bind:value={form.elemen[2]}
-    placeholder="Elemen penting ketiga"
 />
         </div>
 
@@ -308,13 +371,31 @@ select:focus{
 </button>
 
 {#if story}
-    <div class="story-result">
-        <h2>Hasil Cerita</h2>
+<div class="story-result">
 
-        {#each story.split("\n\n") as paragraph}
-            <p>{paragraph}</p>
-        {/each}
+    <h2>Hasil Cerita</h2>
+
+    {#each story.split("\n\n") as paragraph}
+        <p>{paragraph}</p>
+    {/each}
+
+    <div class="story-actions">
+
+        <button on:click={downloadStory}>
+            📥 Download
+        </button>
+
+        <button on:click={copyStory}>
+            📋 Copy
+        </button>
+
+        <button on:click={regenerateStory}>
+            🔄 Generate Lagi
+        </button>
+
     </div>
+
+</div>
 {/if}
 
 </div>
